@@ -51,16 +51,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusinessObjects\AddressBusinessObject.cs" />
     <Compile Include="BusinessObjects\StreetBusinessObject.cs" />
-    <Compile Include="BusinessObjects\MainBusinessObject.cs" />
     <Compile Include="BusinessObjects\SubdivisionProcessBusinessObject.cs" />
     <Compile Include="BusinessObjects\SubdivisionBusinessObject.cs" />
-    <Compile Include="BusinessServices\AddressPlanBusinessService.cs" />
+    <Compile Include="BusinessServices\AddressBusinessService.cs" />
+    <Compile Include="BusinessServices\BaseBusinessService.cs" />
+    <Compile Include="BusinessServices\StreetBusinessService.cs" />
+    <Compile Include="BusinessServices\SubdivisionBusinessService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Helpers\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\AddressPlan.DAL\AddressPlan.DAL.csproj">
       <Project>{031F0FF0-9E6F-4B25-8432-644B86D4D036}</Project>
