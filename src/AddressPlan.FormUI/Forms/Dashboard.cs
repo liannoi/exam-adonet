@@ -8,33 +8,65 @@ namespace AddressPlan.FormUI.Forms
 {
     public partial class Dashboard : Form
     {
-        private BindingSource bindingAddress;
-        private AddressPlanBusinessService addressPlanBusinessService;
+        private AddressBusinessService addressBusinessService;
+        private StreetBusinessService streetBusinessService;
+        private SubdivisionBusinessService subdivisionBusinessService;
         private bool isLoad;
+
+        public BindingSource BindingAddress { get; private set; }
 
         public Dashboard()
         {
             isLoad = false;
             InitializeComponent();
-            addressPlanBusinessService = new AddressPlanBusinessService();
+            InitializeServices();
         }
+
+        #region Events
 
         private void Dashboard_Load(object sender, EventArgs e)
         {
-            IEnumerable<SubdivisionBusinessObject> subdivisions = addressPlanBusinessService.GetSubdivisions(true);
+            InitializeSubdivisions();
+            InitializeStreets();
+            RefreshDataGrid();
+            isLoad = true;
+        }
 
+        private void StreetsComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            RefreshAfterLoad();
+        }
+
+        private void SubdivisionsComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            RefreshAfterLoad();
+        }
+
+        #endregion
+
+        #region Helpers
+
+        private void InitializeServices()
+        {
+            addressBusinessService = new AddressBusinessService();
+            streetBusinessService = new StreetBusinessService();
+            subdivisionBusinessService = new SubdivisionBusinessService();
+        }
+
+        private void InitializeStreets()
+        {
+            IEnumerable<StreetBusinessObject> streets = streetBusinessService.GetStreets(true);
+            streetsComboBox.DataSource = streets;
+            streetsComboBox.ValueMember = "StreetId";
+            streetsComboBox.DisplayMember = "StreetName";
+        }
+
+        private void InitializeSubdivisions()
+        {
+            IEnumerable<SubdivisionBusinessObject> subdivisions = subdivisionBusinessService.GetSubdivisions(true);
             subdivisionsComboBox.DataSource = subdivisions;
             subdivisionsComboBox.ValueMember = "SubdivisionId";
             subdivisionsComboBox.DisplayMember = "SubdivisionName";
-
-            IEnumerable<StreetBusinessObject> streets = addressPlanBusinessService.GetStreets(true);
-            // TODO: Edit streets.
-            streetsComboBox.DataSource = streets;
-            streetsComboBox.ValueMember = "AddressId";
-            streetsComboBox.DisplayMember = "StreetName";
-
-            RefreshDataGrid();
-            isLoad = true;
         }
 
         private int GetSubdivisionIndex()
@@ -49,31 +81,24 @@ namespace AddressPlan.FormUI.Forms
 
         private void RefreshDataGrid()
         {
-            bindingAddress?.ResetBindings(true);
-
-            bindingAddress = new BindingSource
+            BindingAddress?.ResetBindings(true);
+            BindingAddress = new BindingSource
             {
-                DataSource = addressPlanBusinessService.GetStreets(GetSubdivisionIndex(), GetStreetIndex())
+                DataSource = addressBusinessService.GetAddresses(GetStreetIndex(), GetSubdivisionIndex())
             };
-            addressesDataGridView.DataSource = bindingAddress;
-        }
-
-        private void StreetsComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            RefreshAfterLoad();
-        }
-
-        private void SubdivisionsComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            RefreshAfterLoad();
+            addressesDataGridView.DataSource = BindingAddress;
         }
 
         private void RefreshAfterLoad()
         {
-            if (isLoad)
+            if (!isLoad)
             {
-                RefreshDataGrid();
+                return;
             }
+
+            RefreshDataGrid();
         }
+
+        #endregion
     }
 }

@@ -1,6 +1,6 @@
-﻿using AddressPlan.DAL.DataObjects;
-using AddressPlan.DAL.DataServices.Database.Context;
+﻿using AddressPlan.DAL.DataServices.Database.Context;
 using AddressPlan.DAL.DataServices.Database.Repository;
+using AddressPlan.DAL.Entity;
 
 namespace AddressPlan.DAL.DataServices.Database.UnitOfWork
 {
