@@ -26,5 +26,11 @@ namespace AddressPlan.BL.BusinessServices
 
             return DataServices.Unit.Streets.GetEntities<AddressBusinessObject>(query, pStreetId, pSubdivisionId);
         }
+
+        public void Remove(int addressId)
+        {
+            DataServices.Unit.Addresses.Delete(addressId);
+            DataServices.Unit.Commit();
+        }
     }
 }

@@ -33,6 +33,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.addressesDataGridView = new System.Windows.Forms.DataGridView();
+            this.addButton = new System.Windows.Forms.Button();
+            this.removeButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.addressesDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -40,7 +42,7 @@
             // 
             this.subdivisionsComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.subdivisionsComboBox.FormattingEnabled = true;
-            this.subdivisionsComboBox.Location = new System.Drawing.Point(184, 58);
+            this.subdivisionsComboBox.Location = new System.Drawing.Point(1002, 37);
             this.subdivisionsComboBox.Name = "subdivisionsComboBox";
             this.subdivisionsComboBox.Size = new System.Drawing.Size(250, 21);
             this.subdivisionsComboBox.TabIndex = 1;
@@ -50,7 +52,7 @@
             // 
             this.streetsComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.streetsComboBox.FormattingEnabled = true;
-            this.streetsComboBox.Location = new System.Drawing.Point(793, 58);
+            this.streetsComboBox.Location = new System.Drawing.Point(1002, 107);
             this.streetsComboBox.Name = "streetsComboBox";
             this.streetsComboBox.Size = new System.Drawing.Size(250, 21);
             this.streetsComboBox.TabIndex = 2;
@@ -59,7 +61,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(181, 39);
+            this.label1.Location = new System.Drawing.Point(999, 12);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(87, 13);
             this.label1.TabIndex = 3;
@@ -68,7 +70,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(790, 39);
+            this.label2.Location = new System.Drawing.Point(999, 79);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(41, 13);
             this.label2.TabIndex = 4;
@@ -76,13 +78,38 @@
             // 
             // addressesDataGridView
             // 
+            this.addressesDataGridView.AllowUserToAddRows = false;
+            this.addressesDataGridView.AllowUserToDeleteRows = false;
             this.addressesDataGridView.BackgroundColor = System.Drawing.Color.White;
             this.addressesDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.addressesDataGridView.GridColor = System.Drawing.Color.White;
-            this.addressesDataGridView.Location = new System.Drawing.Point(12, 119);
+            this.addressesDataGridView.Location = new System.Drawing.Point(12, 12);
+            this.addressesDataGridView.MultiSelect = false;
             this.addressesDataGridView.Name = "addressesDataGridView";
-            this.addressesDataGridView.Size = new System.Drawing.Size(1240, 551);
+            this.addressesDataGridView.ReadOnly = true;
+            this.addressesDataGridView.Size = new System.Drawing.Size(969, 658);
             this.addressesDataGridView.TabIndex = 5;
+            this.addressesDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.AddressesDataGridView_CellDoubleClick);
+            // 
+            // addButton
+            // 
+            this.addButton.Location = new System.Drawing.Point(1127, 647);
+            this.addButton.Name = "addButton";
+            this.addButton.Size = new System.Drawing.Size(125, 23);
+            this.addButton.TabIndex = 6;
+            this.addButton.Text = "Добавить";
+            this.addButton.UseVisualStyleBackColor = true;
+            this.addButton.Click += new System.EventHandler(this.AddButton_Click);
+            // 
+            // removeButton
+            // 
+            this.removeButton.Location = new System.Drawing.Point(996, 647);
+            this.removeButton.Name = "removeButton";
+            this.removeButton.Size = new System.Drawing.Size(125, 23);
+            this.removeButton.TabIndex = 9;
+            this.removeButton.Text = "Удалить";
+            this.removeButton.UseVisualStyleBackColor = true;
+            this.removeButton.Click += new System.EventHandler(this.RemoveButton_Click);
             // 
             // Dashboard
             // 
@@ -90,6 +117,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1264, 682);
+            this.Controls.Add(this.removeButton);
+            this.Controls.Add(this.addButton);
             this.Controls.Add(this.addressesDataGridView);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -99,7 +128,7 @@
             this.MaximizeBox = false;
             this.Name = "Dashboard";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Dashboard";
+            this.Text = "Address Plan";
             this.Load += new System.EventHandler(this.Dashboard_Load);
             ((System.ComponentModel.ISupportInitialize)(this.addressesDataGridView)).EndInit();
             this.ResumeLayout(false);
@@ -113,5 +142,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridView addressesDataGridView;
+        private System.Windows.Forms.Button addButton;
+        private System.Windows.Forms.Button removeButton;
     }
 }

@@ -42,6 +42,28 @@ namespace AddressPlan.FormUI.Forms
             RefreshAfterLoad();
         }
 
+        private void RemoveButton_Click(object sender, EventArgs e)
+        {
+            if (ShowWarning("Вы уверены, что хотите удалить эту запись?\n\nВЫ НЕ СМОЖЕТЕ ЕЕ ВОСТАНОВИТЬ.", "Удаление адреса - Address Plan", MessageBoxButtons.YesNo) != DialogResult.Yes)
+            {
+                return;
+            }
+
+            AddressBusinessObject current = BindingAddress.Current as AddressBusinessObject;
+            addressBusinessService.Remove(current.AddressId);
+            RefreshAfterLoad();
+        }
+
+        private void AddButton_Click(object sender, EventArgs e)
+        {
+            // TODO: Describe the "abstract" logic for adding an address.
+        }
+
+        private void AddressesDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // TODO: Describe the "abstract" logic for editing an address.
+        }
+
         #endregion
 
         #region Helpers
@@ -97,6 +119,26 @@ namespace AddressPlan.FormUI.Forms
             }
 
             RefreshDataGrid();
+        }
+
+        public DialogResult ShowWarning(string text, string caption, MessageBoxButtons buttons = MessageBoxButtons.OK, MessageBoxIcon icon = MessageBoxIcon.Exclamation)
+        {
+            return MessageBox.Show(text, caption, buttons, icon);
+        }
+
+        public DialogResult ShowError(string text, string caption, MessageBoxButtons buttons = MessageBoxButtons.OK, MessageBoxIcon icon = MessageBoxIcon.Hand)
+        {
+            return MessageBox.Show(text, caption, buttons, icon);
+        }
+
+        public DialogResult ShowQuestion(string text, string caption, MessageBoxButtons buttons = MessageBoxButtons.YesNo, MessageBoxIcon icon = MessageBoxIcon.Question)
+        {
+            return MessageBox.Show(text, caption, buttons, icon);
+        }
+
+        public DialogResult ShowAlert(string text, string caption, MessageBoxButtons buttons = MessageBoxButtons.OK, MessageBoxIcon icon = MessageBoxIcon.Asterisk)
+        {
+            return MessageBox.Show(text, caption, buttons, icon);
         }
 
         #endregion
