@@ -4,6 +4,7 @@ using AddressPlan.DAL.Entity;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Linq;
 
 namespace AddressPlan.BL.BusinessServices
 {
@@ -58,11 +59,20 @@ namespace AddressPlan.BL.BusinessServices
             DataServices.Unit.Commit();
         }
 
+        #region Non contextual methods
+
         public IEnumerable<AddressDetailsBusinessObject> GetDetails()
         {
             const string query = @"SELECT * FROM dbo.Address";
 
             return DataServices.Unit.Addresses.GetEntities<AddressDetailsBusinessObject>(query);
         }
+
+        public AddressDetailsBusinessObject Find(int addressId)
+        {
+            return GetDetails().ToList().Find(d => d.AddressId == addressId);
+        }
+
+        #endregion
     }
 }

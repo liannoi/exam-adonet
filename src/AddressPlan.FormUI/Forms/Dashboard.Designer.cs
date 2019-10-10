@@ -99,7 +99,6 @@
             this.addButton.TabIndex = 6;
             this.addButton.Text = "Добавить";
             this.addButton.UseVisualStyleBackColor = true;
-            this.addButton.Click += new System.EventHandler(this.AddButton_Click);
             // 
             // removeButton
             // 
@@ -109,7 +108,6 @@
             this.removeButton.TabIndex = 9;
             this.removeButton.Text = "Удалить";
             this.removeButton.UseVisualStyleBackColor = true;
-            this.removeButton.Click += new System.EventHandler(this.RemoveButton_Click);
             // 
             // Dashboard
             // 

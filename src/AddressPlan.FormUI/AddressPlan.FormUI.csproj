@@ -74,6 +74,10 @@
     <Compile Include="Forms\EditAddressForm.Designer.cs">
       <DependentUpon>EditAddressForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presenters\AddAddressPresenter.cs" />
+    <Compile Include="Presenters\BasePresenter.cs" />
+    <Compile Include="Presenters\DashboardPresenter.cs" />
+    <Compile Include="Presenters\EditAddressPresenter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\AddAddressForm.resx">
