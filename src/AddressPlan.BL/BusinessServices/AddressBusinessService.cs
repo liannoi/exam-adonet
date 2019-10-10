@@ -1,5 +1,6 @@
 ﻿using AddressPlan.BL.BusinessObjects;
 using AddressPlan.DAL.DataServices;
+using AddressPlan.DAL.Entity;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -25,6 +26,18 @@ namespace AddressPlan.BL.BusinessServices
                 : new SqlParameter("@SubdivisionId", subdivisionId);
 
             return DataServices.Unit.Streets.GetEntities<AddressBusinessObject>(query, pStreetId, pSubdivisionId);
+        }
+
+        public void Add(string houseNumber, int streetId, int subdivisionId)
+        {
+            DataServices.Unit.Addresses.Insert(new Address
+            {
+                AddressId = -1,
+                House = houseNumber,
+                StreetId = streetId,
+                SubdivisionId = subdivisionId
+            });
+            DataServices.Unit.Commit();
         }
 
         public void Remove(int addressId)

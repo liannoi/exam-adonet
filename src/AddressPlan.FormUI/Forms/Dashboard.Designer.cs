@@ -65,16 +65,16 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(87, 13);
             this.label1.TabIndex = 3;
-            this.label1.Text = "Подразделения";
+            this.label1.Text = "Подразделение";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(999, 79);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(41, 13);
+            this.label2.Size = new System.Drawing.Size(39, 13);
             this.label2.TabIndex = 4;
-            this.label2.Text = "Улицы";
+            this.label2.Text = "Улица";
             // 
             // addressesDataGridView
             // 

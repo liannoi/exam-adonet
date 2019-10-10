@@ -56,7 +56,10 @@ namespace AddressPlan.FormUI.Forms
 
         private void AddButton_Click(object sender, EventArgs e)
         {
-            // TODO: Describe the "abstract" logic for adding an address.
+            AddAddressForm addAddressForm = new AddAddressForm();
+            addAddressForm.ShowDialog();
+            RefreshAfterLoad();
+            GC.SuppressFinalize(addAddressForm);
         }
 
         private void AddressesDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
