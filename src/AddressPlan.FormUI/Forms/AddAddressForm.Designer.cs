@@ -67,7 +67,7 @@
             // 
             // houseNumberTextBox
             // 
-            this.houseNumberTextBox.Location = new System.Drawing.Point(29, 263);
+            this.houseNumberTextBox.Location = new System.Drawing.Point(29, 277);
             this.houseNumberTextBox.Name = "houseNumberTextBox";
             this.houseNumberTextBox.Size = new System.Drawing.Size(200, 20);
             this.houseNumberTextBox.TabIndex = 3;
@@ -93,7 +93,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(26, 236);
+            this.label3.Location = new System.Drawing.Point(26, 250);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(70, 13);
             this.label3.TabIndex = 6;

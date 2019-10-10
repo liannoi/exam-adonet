@@ -28,14 +28,26 @@ namespace AddressPlan.BL.BusinessServices
             return DataServices.Unit.Streets.GetEntities<AddressBusinessObject>(query, pStreetId, pSubdivisionId);
         }
 
-        public void Add(string houseNumber, int streetId, int subdivisionId)
+        public void Update(AddressDetailsBusinessObject addressDetailsBusinessObject)
+        {
+            DataServices.Unit.Addresses.Update(new Address
+            {
+                AddressId = addressDetailsBusinessObject.AddressId,
+                House = addressDetailsBusinessObject.HouseNumber,
+                StreetId = addressDetailsBusinessObject.StreetId,
+                SubdivisionId = addressDetailsBusinessObject.SubdivisionId
+            });
+            DataServices.Unit.Commit();
+        }
+
+        public void Add(AddressDetailsBusinessObject addressDetails)
         {
             DataServices.Unit.Addresses.Insert(new Address
             {
                 AddressId = -1,
-                House = houseNumber,
-                StreetId = streetId,
-                SubdivisionId = subdivisionId
+                House = addressDetails.HouseNumber,
+                StreetId = addressDetails.StreetId,
+                SubdivisionId = addressDetails.SubdivisionId
             });
             DataServices.Unit.Commit();
         }
@@ -44,6 +56,13 @@ namespace AddressPlan.BL.BusinessServices
         {
             DataServices.Unit.Addresses.Delete(addressId);
             DataServices.Unit.Commit();
+        }
+
+        public IEnumerable<AddressDetailsBusinessObject> GetDetails()
+        {
+            const string query = @"SELECT * FROM dbo.Address";
+
+            return DataServices.Unit.Addresses.GetEntities<AddressDetailsBusinessObject>(query);
         }
     }
 }

@@ -6,35 +6,36 @@ using System.Windows.Forms;
 
 namespace AddressPlan.FormUI.Forms
 {
-    public partial class AddAddressForm : Form
+    public partial class EditAddressForm : Form
     {
         private AddressBusinessService addressBusinessService;
         private StreetBusinessService streetBusinessService;
         private SubdivisionBusinessService subdivisionBusinessService;
+        private readonly AddressDetailsBusinessObject addressDetails;
 
-        public AddAddressForm()
+        public EditAddressForm(AddressDetailsBusinessObject addressDetails)
         {
+            this.addressDetails = addressDetails;
             InitializeComponent();
             InitializeServices();
         }
 
         #region Events
 
-        private void AddButton_Click(object sender, EventArgs e)
+        private void EditButton_Click(object sender, EventArgs e)
         {
-            addressBusinessService.Add(new AddressDetailsBusinessObject
-            {
-                HouseNumber = houseNumberTextBox.Text,
-                StreetId = GetStreetIndex(),
-                SubdivisionId = GetSubdivisionIndex()
-            });
+            addressDetails.HouseNumber = houseNumberTextBox.Text;
+            addressDetails.StreetId = GetStreetIndex();
+            addressDetails.SubdivisionId = GetSubdivisionIndex();
+            addressBusinessService.Update(addressDetails);
             Close();
         }
 
-        private void AddAddressForm_Load(object sender, EventArgs e)
+        private void EditAddressForm_Load(object sender, EventArgs e)
         {
             InitializeSubdivisions();
             InitializeStreets();
+            houseNumberTextBox.Text = addressDetails.HouseNumber;            
         }
 
         #endregion
@@ -54,6 +55,7 @@ namespace AddressPlan.FormUI.Forms
             streetsComboBox.DataSource = streets;
             streetsComboBox.ValueMember = "StreetId";
             streetsComboBox.DisplayMember = "StreetName";
+            streetsComboBox.SelectedValue = addressDetails.StreetId;
         }
 
         private void InitializeSubdivisions()
@@ -62,6 +64,7 @@ namespace AddressPlan.FormUI.Forms
             subdivisionsComboBox.DataSource = subdivisions;
             subdivisionsComboBox.ValueMember = "SubdivisionId";
             subdivisionsComboBox.DisplayMember = "SubdivisionName";
+            subdivisionsComboBox.SelectedValue = addressDetails.SubdivisionId;
         }
 
         private int GetSubdivisionIndex()

@@ -2,6 +2,7 @@
 using AddressPlan.BL.BusinessServices;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace AddressPlan.FormUI.Forms
@@ -49,7 +50,7 @@ namespace AddressPlan.FormUI.Forms
                 return;
             }
 
-            AddressBusinessObject current = BindingAddress.Current as AddressBusinessObject;
+            AddressBusinessObject current = ToParamType<AddressBusinessObject>(BindingAddress.Current);
             addressBusinessService.Remove(current.AddressId);
             RefreshAfterLoad();
         }
@@ -64,12 +65,30 @@ namespace AddressPlan.FormUI.Forms
 
         private void AddressesDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            // TODO: Describe the "abstract" logic for editing an address.
+            AddressBusinessObject bindingCurrent = ToParamType<AddressBusinessObject>(BindingAddress.Current);
+            AddressDetailsBusinessObject current = addressBusinessService.GetDetails().ToList().Find(d => d.AddressId == bindingCurrent.AddressId);
+
+            AddressDetailsBusinessObject addressDetails = new AddressDetailsBusinessObject
+            {
+                AddressId = current.AddressId,
+                StreetId = current.StreetId,
+                HouseNumber = bindingCurrent.House,
+                SubdivisionId = current.SubdivisionId
+            };
+            EditAddressForm editAddressForm = new EditAddressForm(addressDetails);
+            editAddressForm.ShowDialog();
+            RefreshAfterLoad();
+            GC.SuppressFinalize(editAddressForm);
         }
 
         #endregion
 
         #region Helpers
+
+        private T ToParamType<T>(object param) where T : class
+        {
+            return param as T;
+        }
 
         private void InitializeServices()
         {
