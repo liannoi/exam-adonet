@@ -38,7 +38,7 @@ namespace AddressPlan.DAL.DataServices.Database.Repository
             return _context.Database.SqlQuery<TREntity>(query, parameters).ToList();
         }
 
-        public virtual List<TREntity> Execute<TREntity>(string query) where TREntity : class
+        public virtual List<TREntity> GetEntities<TREntity>(string query) where TREntity : class
         {
             return _context.Database.SqlQuery<TREntity>(query).ToList();
         }

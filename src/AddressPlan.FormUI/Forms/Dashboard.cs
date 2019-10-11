@@ -1,79 +1,79 @@
-﻿using AddressPlan.BL.BusinessObjects;
-using AddressPlan.BL.BusinessServices;
+﻿using AddressPlan.FormUI.Presenters;
 using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace AddressPlan.FormUI.Forms
 {
     public partial class Dashboard : Form
     {
-        private BindingSource bindingAddress;
-        private AddressPlanBusinessService addressPlanBusinessService;
-        private bool isLoad;
+        public ComboBox StreetsComboBox => streetsComboBox;
+
+        public ComboBox SubdivisionsComboBox => subdivisionsComboBox;
+
+        public Button RemoveButton => removeButton;
+
+        public Button AddButton => addButton;
+
+        public DataGridView AddressesDataGridView
+        {
+            get => addressesDataGridView;
+            set => addressesDataGridView = value;
+        }
+
+        public EventHandler WinLoad;
+
+        public EventHandler StreetsComboBoxSelectedIndexChanged;
+
+        public EventHandler SubdivisionsComboBoxSelectedIndexChanged;
+
+        public EventHandler RemoveButtonClick;
+
+        public EventHandler AddButtonClick;
+
+        public DataGridViewCellEventHandler GridViewCellDoubleClick;
 
         public Dashboard()
         {
-            isLoad = false;
             InitializeComponent();
-            addressPlanBusinessService = new AddressPlanBusinessService();
+
+            Load += Dashboard_Load;
+            streetsComboBox.SelectedIndexChanged += StreetsComboBox_SelectedIndexChanged;
+            subdivisionsComboBox.SelectedIndexChanged += SubdivisionsComboBox_SelectedIndexChanged;
+            removeButton.Click += RemoveButton_Click;
+            addButton.Click += AddButton_Click;
+            addressesDataGridView.CellContentDoubleClick += AddressesDataGridView_CellDoubleClick;
+
+            new DashboardPresenter(this);
         }
 
-        private void Dashboard_Load(object sender, EventArgs e)
+        private void AddressesDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            IEnumerable<SubdivisionBusinessObject> subdivisions = addressPlanBusinessService.GetSubdivisions(true);
-
-            subdivisionsComboBox.DataSource = subdivisions;
-            subdivisionsComboBox.ValueMember = "SubdivisionId";
-            subdivisionsComboBox.DisplayMember = "SubdivisionName";
-
-            IEnumerable<StreetBusinessObject> streets = addressPlanBusinessService.GetStreets(true);
-            // TODO: Edit streets.
-            streetsComboBox.DataSource = streets;
-            streetsComboBox.ValueMember = "AddressId";
-            streetsComboBox.DisplayMember = "StreetName";
-
-            RefreshDataGrid();
-            isLoad = true;
+            GridViewCellDoubleClick(this, e);
         }
 
-        private int GetSubdivisionIndex()
+        private void AddButton_Click(object sender, EventArgs e)
         {
-            return Convert.ToInt32(subdivisionsComboBox.SelectedValue);
+            AddButtonClick(this, e);
         }
 
-        private int GetStreetIndex()
+        private void RemoveButton_Click(object sender, EventArgs e)
         {
-            return Convert.ToInt32(streetsComboBox.SelectedValue);
-        }
-
-        private void RefreshDataGrid()
-        {
-            bindingAddress?.ResetBindings(true);
-
-            bindingAddress = new BindingSource
-            {
-                DataSource = addressPlanBusinessService.GetStreets(GetSubdivisionIndex(), GetStreetIndex())
-            };
-            addressesDataGridView.DataSource = bindingAddress;
-        }
-
-        private void StreetsComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            RefreshAfterLoad();
+            RemoveButtonClick(this, e);
         }
 
         private void SubdivisionsComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            RefreshAfterLoad();
+            SubdivisionsComboBoxSelectedIndexChanged(this, e);
         }
 
-        private void RefreshAfterLoad()
+        private void StreetsComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (isLoad)
-            {
-                RefreshDataGrid();
-            }
+            StreetsComboBoxSelectedIndexChanged(this, e);
+        }
+
+        private void Dashboard_Load(object sender, EventArgs e)
+        {
+            WinLoad(this, e);
         }
     }
 }

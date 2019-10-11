@@ -1,6 +1,6 @@
 namespace AddressPlan.DAL.DataServices.Database.Context
 {
-    using AddressPlan.DAL.DataObjects;
+    using AddressPlan.DAL.Entity;
     using System.Data.Entity;
 
     public partial class AddressPlanContext : BaseContext

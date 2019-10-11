@@ -14,7 +14,7 @@ namespace AddressPlan.DAL.DataServices.Database.Repository
 
         List<TREntity> GetEntities<TREntity>(string query, params object[] parameters) where TREntity : class;
 
-        List<TREntity> Execute<TREntity>(string query) where TREntity : class;
+        List<TREntity> GetEntities<TREntity>(string query) where TREntity : class;
 
         void Insert(TEntity entity);
 

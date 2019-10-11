@@ -9,8 +9,8 @@ namespace AddressPlan.Console
     {
         private static void Main(string[] args)
         {
-            AddressPlanBusinessService addressPlanBusinessService = new AddressPlanBusinessService();
-            var streets = addressPlanBusinessService.GetStreets(streetId: 0, subdivisionId: 0);
+            AddressBusinessService addressBusinessService = new AddressBusinessService();
+            IEnumerable<AddressBusinessObject> streets = addressBusinessService.GetAddresses(streetId: 0, subdivisionId: 0);
 
             System.Console.WriteLine("1. наименование улицы, номер дома и наименование подразделения, номер дома которого содержит 1/2");
             System.Console.WriteLine("===================");
@@ -24,20 +24,20 @@ namespace AddressPlan.Console
 
             System.Console.WriteLine("3. наименование улицы, номер дома  и количество домов подразделения - ЖЕД 405");
             System.Console.WriteLine("===================");
-            IEnumerable<StreetBusinessObject> query = streets.Where(s => s.SubdivisionName == "ЖЕД 405");
+            IEnumerable<AddressBusinessObject> query = streets.Where(s => s.SubdivisionName == "ЖЕД 405");
             query.ToList().ForEach(a => System.Console.WriteLine($"{a.StreetName}, {a.House}"));
             System.Console.WriteLine($"\nКол-во: {query.Count()}");
             System.Console.WriteLine("===================");
 
             System.Console.WriteLine("4. наименование всех подразделений и количество улиц, которые они обслуживают");
             System.Console.WriteLine("===================");
-            var query1 = from s in streets
-                         group s.SubdivisionName by s.SubdivisionName into g
-                         select new SubdivisionProcessBusinessObject
-                         {
-                             SubdivisionName = g.Key,
-                             CountProcess = g.Count()
-                         };
+            IEnumerable<SubdivisionProcessBusinessObject> query1 = from s in streets
+                                                                   group s.SubdivisionName by s.SubdivisionName into g
+                                                                   select new SubdivisionProcessBusinessObject
+                                                                   {
+                                                                       SubdivisionName = g.Key,
+                                                                       CountProcess = g.Count()
+                                                                   };
             query1.ToList().ForEach(a => System.Console.WriteLine($"{a.SubdivisionName}, {a.CountProcess}"));
             System.Console.WriteLine("===================");
 

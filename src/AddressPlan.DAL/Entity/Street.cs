@@ -1,25 +1,23 @@
-namespace AddressPlan.DAL.DataObjects
+namespace AddressPlan.DAL.Entity
 {
-    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
 
-    [Table("Subdivision")]
-    public partial class Subdivision
+    [Table("Street")]
+    public partial class Street
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Subdivision()
+        public Street()
         {
             Addresses = new HashSet<Address>();
         }
 
-        public int SubdivisionId { get; set; }
+        public int StreetId { get; set; }
 
         [Required]
-        [StringLength(64)]
-        public string SubdivisionName { get; set; }
+        [StringLength(128)]
+        public string StreetName { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Address> Addresses { get; set; }
