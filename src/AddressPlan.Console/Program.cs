@@ -5,9 +5,9 @@ using System.Linq;
 
 namespace AddressPlan.Console
 {
-    internal class Program
+   internal static class Program
     {
-        protected static void Main(string[] args)
+        private static void Main(string[] args)
         {
             AddressBusinessService addressBusinessService = new AddressBusinessService();
             IEnumerable<AddressBusinessObject> streets = addressBusinessService.GetAddresses(streetId: 0, subdivisionId: 0);
