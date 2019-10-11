@@ -4,6 +4,7 @@
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/57265e99afa048e89f4a990cc2b779fa)](https://www.codacy.com/manual/liannoi/exam-adonet?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=liannoi/exam-adonet&amp;utm_campaign=Badge_Grade)
 [![CodeFactor](https://www.codefactor.io/repository/github/liannoi/exam-adonet/badge)](https://www.codefactor.io/repository/github/liannoi/exam-adonet)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/liannoi/exam-adonet/blob/master/LICENSE)
 
 [//]: # (Snapshot of the program)
 
@@ -35,3 +36,7 @@ addresses.
 ## Build and Run
 
 Сlone the repository and run the **src/AddressPlan.sln** file in Visual Studio.
+
+## License
+
+The repository is licensed by [Apache-2.0](https://github.com/liannoi/exam-adonet/blob/master/LICENSE).
