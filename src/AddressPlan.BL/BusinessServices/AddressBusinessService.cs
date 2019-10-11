@@ -14,7 +14,7 @@ namespace AddressPlan.BL.BusinessServices
         {
         }
 
-        public IEnumerable<AddressBusinessObject> GetAddresses(int streetId, int subdivisionId)
+        public static IEnumerable<AddressBusinessObject> GetAddresses(int streetId, int subdivisionId)
         {
             const string query = "EXEC dbo.GetData @StreetId, @SubdivisionId";
 
@@ -53,7 +53,7 @@ namespace AddressPlan.BL.BusinessServices
             DataServices.Unit.Commit();
         }
 
-        public void Remove(int addressId)
+        public static void Remove(int addressId)
         {
             DataServices.Unit.Addresses.Delete(addressId);
             DataServices.Unit.Commit();
@@ -61,7 +61,7 @@ namespace AddressPlan.BL.BusinessServices
 
         #region Non contextual methods
 
-        public IEnumerable<AddressDetailsBusinessObject> GetDetails()
+        public static IEnumerable<AddressDetailsBusinessObject> GetDetails()
         {
             const string query = @"SELECT * FROM dbo.Address";
 

@@ -10,7 +10,7 @@ namespace AddressPlan.BL.BusinessServices
         {
         }
 
-        public IEnumerable<SubdivisionBusinessObject> GetSubdivisions(bool wantNull)
+        public static IEnumerable<SubdivisionBusinessObject> GetSubdivisions(bool wantNull)
         {
             const string query = @"SELECT *
                                    FROM dbo.Subdivision";

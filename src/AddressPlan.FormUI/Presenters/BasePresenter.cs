@@ -42,7 +42,7 @@ namespace AddressPlan.FormUI.Presenters
             comboBox.DisplayMember = "SubdivisionName";
         }
 
-        protected int GetSelectedValue(ComboBox comboBox)
+        protected static int GetSelectedValue(ComboBox comboBox)
         {
             return Convert.ToInt32(comboBox.SelectedValue);
         }
