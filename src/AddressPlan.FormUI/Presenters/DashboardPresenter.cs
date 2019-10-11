@@ -106,7 +106,7 @@ namespace AddressPlan.FormUI.Presenters
             RefreshDataGrid();
         }
 
-        private T Cast<T>(object param) where T : class
+        private static T Cast<T>(object param) where T : class
         {
             return param as T;
         }

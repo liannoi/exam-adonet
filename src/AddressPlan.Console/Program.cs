@@ -7,7 +7,7 @@ namespace AddressPlan.Console
 {
     internal class Program
     {
-        private static void Main(string[] args)
+        protected static void Main(string[] args)
         {
             AddressBusinessService addressBusinessService = new AddressBusinessService();
             IEnumerable<AddressBusinessObject> streets = addressBusinessService.GetAddresses(streetId: 0, subdivisionId: 0);
