@@ -1,104 +1,79 @@
-﻿using AddressPlan.BL.BusinessObjects;
-using AddressPlan.BL.BusinessServices;
+﻿using AddressPlan.FormUI.Presenters;
 using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace AddressPlan.FormUI.Forms
 {
     public partial class Dashboard : Form
     {
-        private AddressBusinessService addressBusinessService;
-        private StreetBusinessService streetBusinessService;
-        private SubdivisionBusinessService subdivisionBusinessService;
-        private bool isLoad;
+        public ComboBox StreetsComboBox => streetsComboBox;
 
-        public BindingSource BindingAddress { get; private set; }
+        public ComboBox SubdivisionsComboBox => subdivisionsComboBox;
+
+        public Button RemoveButton => removeButton;
+
+        public Button AddButton => addButton;
+
+        public DataGridView AddressesDataGridView
+        {
+            get => addressesDataGridView;
+            set => addressesDataGridView = value;
+        }
+
+        public EventHandler WinLoad;
+
+        public EventHandler StreetsComboBoxSelectedIndexChanged;
+
+        public EventHandler SubdivisionsComboBoxSelectedIndexChanged;
+
+        public EventHandler RemoveButtonClick;
+
+        public EventHandler AddButtonClick;
+
+        public DataGridViewCellEventHandler GridViewCellDoubleClick;
 
         public Dashboard()
         {
-            isLoad = false;
             InitializeComponent();
-            InitializeServices();
+
+            Load += Dashboard_Load;
+            streetsComboBox.SelectedIndexChanged += StreetsComboBox_SelectedIndexChanged;
+            subdivisionsComboBox.SelectedIndexChanged += SubdivisionsComboBox_SelectedIndexChanged;
+            removeButton.Click += RemoveButton_Click;
+            addButton.Click += AddButton_Click;
+            addressesDataGridView.CellContentDoubleClick += AddressesDataGridView_CellDoubleClick;
+
+            new DashboardPresenter(this);
         }
 
-        #region Events
-
-        private void Dashboard_Load(object sender, EventArgs e)
+        private void AddressesDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            InitializeSubdivisions();
-            InitializeStreets();
-            RefreshDataGrid();
-            isLoad = true;
+            GridViewCellDoubleClick(this, e);
         }
 
-        private void StreetsComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void AddButton_Click(object sender, EventArgs e)
         {
-            RefreshAfterLoad();
+            AddButtonClick(this, e);
+        }
+
+        private void RemoveButton_Click(object sender, EventArgs e)
+        {
+            RemoveButtonClick(this, e);
         }
 
         private void SubdivisionsComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            RefreshAfterLoad();
+            SubdivisionsComboBoxSelectedIndexChanged(this, e);
         }
 
-        #endregion
-
-        #region Helpers
-
-        private void InitializeServices()
+        private void StreetsComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            addressBusinessService = new AddressBusinessService();
-            streetBusinessService = new StreetBusinessService();
-            subdivisionBusinessService = new SubdivisionBusinessService();
+            StreetsComboBoxSelectedIndexChanged(this, e);
         }
 
-        private void InitializeStreets()
+        private void Dashboard_Load(object sender, EventArgs e)
         {
-            IEnumerable<StreetBusinessObject> streets = streetBusinessService.GetStreets(true);
-            streetsComboBox.DataSource = streets;
-            streetsComboBox.ValueMember = "StreetId";
-            streetsComboBox.DisplayMember = "StreetName";
+            WinLoad(this, e);
         }
-
-        private void InitializeSubdivisions()
-        {
-            IEnumerable<SubdivisionBusinessObject> subdivisions = subdivisionBusinessService.GetSubdivisions(true);
-            subdivisionsComboBox.DataSource = subdivisions;
-            subdivisionsComboBox.ValueMember = "SubdivisionId";
-            subdivisionsComboBox.DisplayMember = "SubdivisionName";
-        }
-
-        private int GetSubdivisionIndex()
-        {
-            return Convert.ToInt32(subdivisionsComboBox.SelectedValue);
-        }
-
-        private int GetStreetIndex()
-        {
-            return Convert.ToInt32(streetsComboBox.SelectedValue);
-        }
-
-        private void RefreshDataGrid()
-        {
-            BindingAddress?.ResetBindings(true);
-            BindingAddress = new BindingSource
-            {
-                DataSource = addressBusinessService.GetAddresses(GetStreetIndex(), GetSubdivisionIndex())
-            };
-            addressesDataGridView.DataSource = BindingAddress;
-        }
-
-        private void RefreshAfterLoad()
-        {
-            if (!isLoad)
-            {
-                return;
-            }
-
-            RefreshDataGrid();
-        }
-
-        #endregion
     }
 }

@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace AddressPlan.Console
 {
-    internal class Program
+   internal static class Program
     {
         private static void Main(string[] args)
         {

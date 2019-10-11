@@ -17,6 +17,7 @@ namespace AddressPlan.DAL.DataServices.Database.Context
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            // Do nothing.
         }
     }
 }

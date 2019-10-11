@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusinessObjects\AddressBusinessObject.cs" />
+    <Compile Include="BusinessObjects\AddressDetailsBusinessObject.cs" />
     <Compile Include="BusinessObjects\StreetBusinessObject.cs" />
     <Compile Include="BusinessObjects\SubdivisionProcessBusinessObject.cs" />
     <Compile Include="BusinessObjects\SubdivisionBusinessObject.cs" />
