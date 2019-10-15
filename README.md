@@ -25,6 +25,8 @@ pattern.
 The second part of the examination task is writing LINQ queries to a set of
 addresses.
 
+**I got 10/12 for work. Teacher: Vasilenko Igor Grigorevich**
+
 [//]: # (Paragraphs)
 
 ## System requirements
@@ -35,7 +37,13 @@ addresses.
 
 ## Build and Run
 
-Сlone the repository and run the **src/AddressPlan.sln** file in Visual Studio.
+- Сlone the repository
+- Launch SQL Server Management Studio (SSMS)
+- Connect to an instance of SQL Server
+- **(optional)** *If the database has already been created, delete it yourself*
+- Run the [script to create the database](https://github.com/liannoi/exam-adonet/blob/master/db/script-to-create.sql)
+- Run the [script to create the procedure](https://github.com/liannoi/exam-adonet/blob/master/db/procedure.sql)
+- Run [AddressPlan.sln](https://github.com/liannoi/exam-adonet/blob/master/src/AddressPlan.sln) file in Visual Studio.
 
 ## License
 
