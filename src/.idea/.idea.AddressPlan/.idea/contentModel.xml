@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="$USER_HOME$/Library/Caches/Rider2019.2/extResources" t="IncludeRecursive" />
+    <e p="$USER_HOME$/Library/Caches/Rider2019.2/resharper-host/local/Transient/ReSharperHost/v192/SolutionCaches/_AddressPlan.1535433576.00" t="ExcludeRecursive" />
+    <e p="$PROJECT_DIR$" t="IncludeFlat">
+      <e p="AddressPlan.BL" t="IncludeRecursive">
+        <e p="AddressPlan.BL.csproj" t="IncludeRecursive" />
+        <e p="App.config" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="BusinessObjects" t="Include">
+          <e p="AddressBusinessObject.cs" t="Include" />
+          <e p="AddressDetailsBusinessObject.cs" t="Include" />
+          <e p="StreetBusinessObject.cs" t="Include" />
+          <e p="SubdivisionBusinessObject.cs" t="Include" />
+          <e p="SubdivisionProcessBusinessObject.cs" t="Include" />
+        </e>
+        <e p="BusinessServices" t="Include">
+          <e p="AddressBusinessService.cs" t="Include" />
+          <e p="BaseBusinessService.cs" t="Include" />
+          <e p="StreetBusinessService.cs" t="Include" />
+          <e p="SubdivisionBusinessService.cs" t="Include" />
+        </e>
+        <e p="obj" t="ExcludeRecursive" />
+        <e p="packages.config" t="Include" />
+        <e p="Properties" t="Include">
+          <e p="AssemblyInfo.cs" t="Include" />
+        </e>
+      </e>
+      <e p="AddressPlan.Console" t="IncludeRecursive">
+        <e p="AddressPlan.Console.csproj" t="IncludeRecursive" />
+        <e p="App.config" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="obj" t="ExcludeRecursive" />
+        <e p="packages.config" t="Include" />
+        <e p="Program.cs" t="Include" />
+        <e p="Properties" t="Include">
+          <e p="AssemblyInfo.cs" t="Include" />
+        </e>
+      </e>
+      <e p="AddressPlan.DAL" t="IncludeRecursive">
+        <e p="AddressPlan.DAL.csproj" t="IncludeRecursive" />
+        <e p="App.config" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="DataServices" t="Include">
+          <e p="Database" t="Include">
+            <e p="Context" t="Include">
+              <e p="AddressPlanContext.cs" t="Include" />
+              <e p="BaseContext.cs" t="Include" />
+            </e>
+            <e p="Repository" t="Include">
+              <e p="BaseRepository.cs" t="Include" />
+              <e p="IRepository.cs" t="Include" />
+            </e>
+            <e p="UnitOfWork" t="Include">
+              <e p="IUnitOfWork.cs" t="Include" />
+              <e p="UnitOfWork.cs" t="Include" />
+            </e>
+          </e>
+          <e p="DataServices.cs" t="Include" />
+          <e p="Mock" t="Include">
+            <e p="BaseMockDataService.cs" t="Include" />
+          </e>
+        </e>
+        <e p="Entity" t="Include">
+          <e p="Address.cs" t="Include" />
+          <e p="Street.cs" t="Include" />
+          <e p="Subdivision.cs" t="Include" />
+        </e>
+        <e p="obj" t="ExcludeRecursive" />
+        <e p="packages.config" t="Include" />
+        <e p="Properties" t="Include">
+          <e p="AssemblyInfo.cs" t="Include" />
+        </e>
+      </e>
+      <e p="AddressPlan.FormUI" t="IncludeRecursive">
+        <e p="AddressPlan.FormUI.csproj" t="IncludeRecursive" />
+        <e p="App.config" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Forms" t="Include">
+          <e p="AddAddressForm.cs" t="Include" />
+          <e p="AddAddressForm.Designer.cs" t="Include" />
+          <e p="AddAddressForm.resx" t="Include" />
+          <e p="Dashboard.cs" t="Include" />
+          <e p="Dashboard.Designer.cs" t="Include" />
+          <e p="Dashboard.resx" t="Include" />
+          <e p="EditAddressForm.cs" t="Include" />
+          <e p="EditAddressForm.Designer.cs" t="Include" />
+          <e p="EditAddressForm.resx" t="Include" />
+        </e>
+        <e p="obj" t="ExcludeRecursive" />
+        <e p="packages.config" t="Include" />
+        <e p="Presenters" t="Include">
+          <e p="AddAddressPresenter.cs" t="Include" />
+          <e p="BasePresenter.cs" t="Include" />
+          <e p="DashboardPresenter.cs" t="Include" />
+          <e p="EditAddressPresenter.cs" t="Include" />
+        </e>
+        <e p="Program.cs" t="Include" />
+        <e p="Properties" t="Include">
+          <e p="AssemblyInfo.cs" t="Include" />
+          <e p="Resources.Designer.cs" t="Include" />
+          <e p="Resources.resx" t="Include" />
+          <e p="Settings.Designer.cs" t="Include" />
+          <e p="Settings.settings" t="Include" />
+        </e>
+      </e>
+      <e p="AddressPlan.sln" t="IncludeFlat" />
+      <e p="packages" t="ExcludeRecursive" />
+    </e>
+  </component>
+</project>
